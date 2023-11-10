@@ -7,7 +7,7 @@ A refined version of [IsHYuhi's implementation](https://github.com/IsHYuhi/BEDSR
 ## Fix several problems
 1. nn.ConvTranspose2d compatible with higher version of Pytorch
 2. gradcam uses too much vram, use [pytorch-grad-cam](https://github.com/jacobgil/pytorch-grad-cam) instead
-3. provide default correct training config 
+3. provide default correct training config
 4. provide easy inference code
 
 ## Dependencies
@@ -15,11 +15,9 @@ Pytorch, torchvision, matplotlib, wandb, albumentations, pytorch-grad-cam
 
 ## Dataset Structure
 
-The dataset should be formatted like below, train.csv and test.csv can be generated using 
+The dataset should be formatted like below, train.csv and test.csv can be generated.
+You can download the Jung dataset: [csv](https://drive.google.com/file/d/1NS4cxMwoGrWlHv6uyf8iVFAUN-xmw5vb/view?usp=sharing)/[images](https://drive.google.com/file/d/192dqE4K6zuxD0tNre9UHDwu4YB4uxSnG/view?usp=sharing).
 
-```python
-python make_dataset.py
-```
 ```
 .
 ├── csv/

@@ -148,12 +148,13 @@ def do_one_iteration(
     x = x.detach().to("cpu").numpy()
     gt = gt.detach().to("cpu").numpy()
     pred = shadow_removal_image.detach().to("cpu").numpy()
-    
+
     if infer:
         name = os.path.basename(sample['img_path'][0])
         image = (unnormalize(pred[0]) * 255).astype('uint8')
+        # FIX: RGB->BGR
         cv2.imwrite(os.path.join('results', name), image)
-        
+
     attention_map = attention_map.detach().to("cpu").numpy()
     back_ground = back_ground.detach().to("cpu").numpy()
     out_D_fake.detach()

@@ -15,7 +15,7 @@ from libs.seed import set_seed
 if __name__ == '__main__':
     os.makedirs('results', exist_ok=True)
     result_path = os.path.dirname('results')
-    
+
     set_seed()
     device = get_device(allow_only_gpu=False)
 
@@ -28,7 +28,7 @@ if __name__ == '__main__':
     )
 
     val_loader = get_dataloader(
-        'Adobe',
+        'Jung',
         'bedsrnet',
         "test",
         batch_size=1,

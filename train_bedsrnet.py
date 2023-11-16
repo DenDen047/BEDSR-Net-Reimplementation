@@ -26,6 +26,7 @@ from libs.loss_fn import get_criterion
 from libs.models import get_model
 from libs.seed import set_seed
 
+
 logger = getLogger(__name__)
 
 
@@ -80,8 +81,8 @@ def main() -> None:
         filename=logname,
     )
 
-    # fix seed
-    set_seed()
+    # setting the seed
+    set_seed(args.seed)
 
     # configuration
     config = get_config(args.config)

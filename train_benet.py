@@ -1,7 +1,9 @@
 import argparse
 import datetime
 import os
+import sys
 import time
+import logging
 from logging import DEBUG, INFO, basicConfig, getLogger
 
 import torch
@@ -15,7 +17,6 @@ from albumentations import VerticalFlip  # noqa
 from albumentations import Compose, HorizontalFlip, Normalize, RandomResizedCrop, Resize
 from albumentations.pytorch import ToTensorV2
 
-import wandb
 from libs.checkpoint import resume, save_checkpoint
 from libs.config import get_config
 from libs.dataset import get_dataloader
@@ -38,7 +39,12 @@ def get_arguments() -> argparse.Namespace:
         train a network for image classification with Flowers Recognition Dataset.
         """
     )
-    parser.add_argument("--config", type=str, help="path of a config file", default='./configs/model=benet/config.yaml')
+    parser.add_argument(
+        "--config",
+        default='./configs/model=benet/config.yaml',
+        type=str,
+        help="path of a config file"
+    )
     parser.add_argument(
         "--resume",
         action="store_true",
@@ -80,8 +86,8 @@ def main() -> None:
         filename=logname,
     )
 
-    # fix seed
-    set_seed()
+    # setting the seed
+    set_seed(args.seed)
 
     # configuration
     config = get_config(args.config)
@@ -155,6 +161,7 @@ def main() -> None:
 
     # Weights and biases
     if args.use_wandb:
+        import wandb
         wandb.init(
             name=experiment_name,
             config=config,
@@ -165,7 +172,7 @@ def main() -> None:
         wandb.watch(model, log="all")
 
     # train and validate model
-    logger.info("Start training.")
+    logger.info("Start training.\n\n\n")
 
     for epoch in range(begin_epoch, config.max_epoch):
         # training

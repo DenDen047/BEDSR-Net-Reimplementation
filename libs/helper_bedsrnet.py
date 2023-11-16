@@ -151,9 +151,11 @@ def do_one_iteration(
 
     if infer:
         name = os.path.basename(sample['img_path'][0])
-        image = (unnormalize(pred[0]) * 255).astype('uint8')
-        # FIX: RGB->BGR
-        cv2.imwrite(os.path.join('results', name), image)
+        rgb_image = (unnormalize(pred[0]) * 255).astype('uint8')
+        cv2.imwrite(
+            os.path.join('results', name),
+            cv2.cvtColor(rgb_image, cv2.COLOR_RGB2BGR)
+        )
 
     attention_map = attention_map.detach().to("cpu").numpy()
     back_ground = back_ground.detach().to("cpu").numpy()

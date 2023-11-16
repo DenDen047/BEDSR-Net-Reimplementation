@@ -163,7 +163,7 @@ def main() -> None:
 
     # resume if you want
     if args.resume:
-        resume_path = os.path.join(result_path, "checkpoint.pth")
+        resume_dir = result_path
         (
             begin_epoch,
             generator,
@@ -173,7 +173,7 @@ def main() -> None:
             best_g_loss,
             best_d_loss,
         ) = resume_BEDSRNet(
-            resume_path, generator, discriminator, optimizerG, optimizerD
+            resume_dir, generator, discriminator, optimizerG, optimizerD
         )
 
     log_path = os.path.join(result_path, "log.csv")

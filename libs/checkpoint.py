@@ -91,21 +91,21 @@ def resume_BEDSRNet(
 ) -> Tuple[int, nn.Module, nn.Module, optim.Optimizer, optim.Optimizer, float, float]:
     try:
         checkpoint_g = torch.load(
-            os.path.join(resume_path + "g_checkpoint.pth"),
+            os.path.join(resume_path, "g_checkpoint.pth"),
             map_location=lambda storage, loc: storage,
         )
         logger.info(
             "loading checkpoint {}".format(
-                os.path.join(resume_path + "g_checkpoint.pth")
+                os.path.join(resume_path, "g_checkpoint.pth")
             )
         )
         checkpoint_d = torch.load(
-            os.path.join(resume_path + "d_checkpoint.pth"),
+            os.path.join(resume_path, "d_checkpoint.pth"),
             map_location=lambda storage, loc: storage,
         )
         logger.info(
             "loading checkpoint {}".format(
-                os.path.join(resume_path + "d_checkpoint.pth")
+                os.path.join(resume_path, "d_checkpoint.pth")
             )
         )
     except FileNotFoundError(
@@ -117,11 +117,11 @@ def resume_BEDSRNet(
     best_g_loss = checkpoint_g["best_g_loss"]
     best_d_loss = checkpoint_d["best_d_loss"]
 
-    generator.load_state_dict(checkpoint_g["state_dict"])
-    discriminator.load_state_dict(checkpoint_d["state_dict"])
+    generator.load_state_dict(checkpoint_g["state_dictG"])
+    discriminator.load_state_dict(checkpoint_d["state_dictD"])
 
-    optimizerG.load_state_dict(checkpoint_g["optimizer"])
-    optimizerD.load_state_dict(checkpoint_d["optimizer"])
+    optimizerG.load_state_dict(checkpoint_g["optimizerG"])
+    optimizerD.load_state_dict(checkpoint_d["optimizerD"])
 
     logger.info("training will start from {} epoch".format(begin_epoch))
 

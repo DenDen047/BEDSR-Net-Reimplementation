@@ -45,14 +45,14 @@ You can download the Jung dataset: [csv](https://drive.google.com/file/d/1NS4cxM
 
 ## Training
 
-Training BE-Net
-```python
-python3 train_benet.py ./configs/model\=benet/config.yaml
+1. Training BE-Net
+```bash
+$ python3 train_benet.py --config ./configs/model\=benet/config.yaml
 ```
 
-Training BEDSR-Net
-```python
-python3 train_bedsrnet.py ./configs/model\=bedsrnet/config.yaml
+2. Training BEDSR-Net
+```bash
+$ python3 train_bedsrnet.py --config ./configs/model\=bedsrnet/config.yaml
 ```
 
 You can use W&B by ```--use_wandb```.

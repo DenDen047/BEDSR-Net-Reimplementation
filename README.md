@@ -47,22 +47,22 @@ You can download the Jung dataset: [csv](https://drive.google.com/file/d/1NS4cxM
 
 1. Training BE-Net
 ```bash
-$ python3 train_benet.py --config ./configs/model\=benet/config.yaml
+$ python train_benet.py --config ./configs/model\=benet/config.yaml
 ```
 
 2. Training BEDSR-Net
 ```bash
-$ python3 train_bedsrnet.py --config ./configs/model\=bedsrnet/config.yaml
+$ python train_bedsrnet.py --config ./configs/model\=bedsrnet/config.yaml
 ```
 
-You can use W&B by ```--use_wandb```.
+You can use [W&B](https://wandb.ai/site) by `--use_wandb`.
 
 ## Infer
 
 mask sure put all your model state_dict into pretrained directory
 
-```python
-python infer.py
+```bash
+$ python infer.py
 ```
 
 result images will be produced in results folder
